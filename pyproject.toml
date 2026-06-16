@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "transport-data-platform"
+version = "0.1.0"
+description = "End-to-end data engineering platform for public transport analytics"
+authors = ["Paskal Nicolas <paskou2001@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+apache-airflow = "^3.2.2"
+pyspark = "^4.1.2"
+google-cloud-storage = ">=2.4,<3.2"
+google-cloud-bigquery = "^3.42.0"
+dbt-bigquery = "^1.11.1"
+great-expectations = "^1.18.1"
+pandas = "^3.0.3"
+requests = "^2.34.2"
+python-dotenv = "^1.2.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
