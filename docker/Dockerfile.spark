@@ -1,0 +1,9 @@
+FROM apache/spark:4.0.3-scala2.13-java17-python3-r-ubuntu
+USER root
+RUN pip install pyspark google-cloud-storage \
+# gcs connector for read write in gcs cloud
+    && wget -O /opt/spark/jars/gcs-connector.jar https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar 
+WORKDIR /app
+COPY . /app
+
+#No entrypoint because we need to execute two Sparks Jobs
