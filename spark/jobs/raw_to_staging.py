@@ -21,11 +21,15 @@ def extract_col(dataframe):
         to_timestamp(col("departures.stop_date_time.base_departure_date_time"),"yyyyMMdd'T'HHmmss").alias("base_departure_time")
 
     )
-    return df.withColumn("delay_minutes",(col("departure_time")-col("base_departure_time"))/60)
+    # Soustraction of two timestamp give micro seconds so we convert into minutes 
+    return df.withColumn("delay_minutes",
+        (col("departure_time").cast("long") - col("base_departure_time").cast("long")) / 60
+        )
    
 
 if __name__=="__main__":
-    df = raw_to_staging()
-    clean_df = extract_col(df)
-    clean_df.write.mode("overwrite").parquet(f"gs://{GCP_BUCKET_NAME}/staging/departures/")
+    if __name__ == "__main__":
+        df = raw_to_staging()
+        clean_df = extract_col(df)
+        clean_df.write.mode("overwrite").parquet(f"gs://{GCP_BUCKET_NAME}/staging/departures/")
     

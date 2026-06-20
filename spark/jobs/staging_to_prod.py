@@ -13,9 +13,9 @@ def staging_to_prod():
     )
     return departures_delay.groupBy("station_name","train_type") \
             .agg( 
-                avg("delay_minutes"),
-                max("delay_minutes"),
-                count("*")
+                avg("delay_minutes").alias("avg_delay_minutes"),
+                max("delay_minutes").alias("max_delay_minutes"),
+                count("*").alias("total_trains")
             )
 
 if __name__== "__main__":
