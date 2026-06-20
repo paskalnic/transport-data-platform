@@ -1,6 +1,3 @@
-
-import sys
-sys.path.insert(0, '/app/spark')
 from utils.spark_session import get_spark_session
 import os
 from pyspark.sql.functions import explode,col,to_timestamp
@@ -31,3 +28,4 @@ if __name__=="__main__":
     df = raw_to_staging()
     clean_df = extract_col(df)
     clean_df.write.mode("overwrite").parquet(f"gs://{GCP_BUCKET_NAME}/staging/departures/")
+    

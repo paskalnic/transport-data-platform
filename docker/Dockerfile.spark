@@ -5,5 +5,5 @@ RUN pip install pyspark google-cloud-storage \
     && wget -O /opt/spark/jars/gcs-connector.jar https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar 
 WORKDIR /app
 COPY . /app
-
+ENV PYTHONPATH=/app/spark
 #No entrypoint because we need to execute two Sparks Jobs
